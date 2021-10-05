@@ -7,7 +7,7 @@ class TodoService {
   final Map<String, String> headers = {'Content-type': 'application/json'};
 
   Future<List<TodoModel>> getAll() async {
-    http.Response res = await http.get(url, headers: headers);
+    http.Response res = await http.get(Uri.parse(url), headers: headers);
 
     if (res.statusCode == 200) {
       List<dynamic> body = convert.jsonDecode(res.body);
@@ -21,7 +21,7 @@ class TodoService {
 
   Future<String> post(TodoModel todo) async {
     http.Response res =
-        await http.post(url, headers: headers, body: convert.jsonEncode(todo));
+        await http.post(Uri.parse(url), headers: headers, body: convert.jsonEncode(todo));
 
     if (res.statusCode == 200) {
       return "${todo.title} is successfully added.";
@@ -31,7 +31,7 @@ class TodoService {
   }
 
   Future<String> patch(TodoModel todo) async {
-    http.Response res = await http.patch('$url/${todo.id}',
+    http.Response res = await http.patch(Uri.parse('$url/${todo.id}'),
         headers: headers, body: convert.jsonEncode(todo));
 
     if (res.statusCode == 200) {
@@ -42,7 +42,7 @@ class TodoService {
   }
 
   Future<String> delete(TodoModel todo) async {
-    http.Response res = await http.delete('$url/${todo.id}', headers: headers);
+    http.Response res = await http.delete(Uri.parse('$url/${todo.id}'), headers: headers);
 
     if (res.statusCode == 200) {
       return "${todo.title} is successfully deleted.";

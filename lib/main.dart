@@ -219,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _cancelButton() {
-    return FlatButton(
+    return TextButton(
       child: Text('Cancel'),
       onPressed: () {
         Navigator.of(context).pop();
@@ -228,7 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _submitButtonBuilder(void Function() onPressed) {
-    return FlatButton(
+    return TextButton(
       child: Text('Submit'),
       onPressed: onPressed,
     );
